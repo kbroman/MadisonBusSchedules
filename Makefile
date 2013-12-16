@@ -7,4 +7,4 @@ Web/bus_info.js: Web/bus_info.coffee
 	coffee -bc Web/bus_info.coffee
 
 web: Web/bus_info.js Ruby/bus_info.json
-	cd Coffeescript;scp index.html bus_info.js bus_info.json broman-2:public_html/bus/
+	cd Web;scp index.html bus_info.js bus_info.json broman-2:public_html/bus/
