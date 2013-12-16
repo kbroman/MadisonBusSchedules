@@ -1,10 +1,10 @@
-all: Ruby/bus_info.json Web/bus_info.js
+all: Ruby/bus_info.json Web/insert_stops.js
 
 Ruby/bus_info.json: Ruby/grab_bus_stops.rb
 	cd Ruby;grab_bus_stops.rb 15 80
 
-Web/bus_info.js: Web/bus_info.coffee
-	coffee -bc Web/bus_info.coffee
+Web/insert_stops.js: Web/insert_stops.coffee
+	coffee -bc Web/insert_stops.coffee
 
-web: Web/bus_info.js Ruby/bus_info.json
-	cd Web;scp index.html bus_info.js *.json broman-2:public_html/bus/
+toweb: Web/insert_stops.js Ruby/bus_info.json
+	cd Web;scp index.html insert_stops.js *.json broman-2:public_html/bus/
