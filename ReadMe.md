@@ -10,6 +10,8 @@ stops for selected bus routes.
 [`Web/`](https://github.com/kbroman/MadisonBusSchedules/tree/master/Web)
 contains the web app, with [CoffeeScript](http://coffeescript.org) code.
 
+See it in action [here](http://www.biostat.wisc.edu/~kbroman/bus).
+
 ---
 
 Licensed under the [MIT license](LICENSE). ([More information](http://en.wikipedia.org/wiki/MIT_License).)
