@@ -87,9 +87,9 @@ require 'json'
 File.open("bus_info.json", "w") { |f| f.write(bus_info.to_json) }
 file = "preferred_stops.json"
 unless File.exists?(file)
-  print "Writing list of stops"
+  print "Writing list of stops\n"
   f = File.open(file, "w")
-  f.write("[\n")
+  f.write("[")
   f.write(stops.map { |z| "\"#{z}\""}.join(",\n"))
-  f.write("\n]\n")
+  f.write("]\n")
 end
