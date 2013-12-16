@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Madison bus tracker</title>
+  <title>Madison buses</title>
 
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"/>
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -14,13 +14,14 @@
  <body>
  <div data-role="page" data-theme="a">
    <div data-role="header">
-       <h1>Madison bus tracker</h1>
+       <h1>Madison buses</h1>
    </div>
 
    <div data-role="content">
-       <ul data-role="listview" data-inset="true" data-divider-theme="b" id="buses">
-          <li data-role="list-divider" id="buses">Buses</li>
-       </ul>
+       <div data-role="collapsible-set" data-theme="b" data-inset="true"
+            data-content-theme="d" data-collapsed-icon="arrow-r"
+            data-expanded-icon="arrow-d", id="insert_here">
+       </div>
    </div>
    <div data-role="footer">
         <h4><a href="http://webwatch.cityofmadison.com/webwatch/prediction.aspx?mode=d">official site</a></h4>
