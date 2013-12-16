@@ -63,15 +63,33 @@ def clean_stop_names (stops)
     stop = $1 if stop =~ /(.*)\s+\[/
     stop = stop.split(/\s+/).map {|w| w.capitalize}.join(' ')
     stop = stop.sub "D`onofrio", "D'Onofrio"
-    p stop
     result[stop] = link
   end
   result
 end
 
+def all_stops (bus_info)
+  stops = []
+  bus_info.each do |route,info|
+    info["stops"].each do |dir,info|
+       stops += (info.map { |stop,link| stop })
+    end
+  end
+  stops.uniq
+end
+
 bus_info = {}
 routes.each { |route| bus_info[route] = grab_stops(route, grab_directions(route)) }
 
+stops = all_stops(bus_info)
+
 require 'json'
 File.open("bus_info.json", "w") { |f| f.write(bus_info.to_json) }
-
+file = "preferred_stops.json"
+unless File.exists?(file)
+  print "Writing list of stops"
+  f = File.open(file, "w")
+  f.write("[\n")
+  f.write(stops.map { |z| "\"#{z}\""}.join(",\n"))
+  f.write("\n]\n")
+end
