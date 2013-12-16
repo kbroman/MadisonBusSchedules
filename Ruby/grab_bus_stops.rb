@@ -26,6 +26,7 @@ def grab_stops(route, directions)
                             map {|link| [link.text.strip, "#{SERVER}/#{link['href']}"]}]
 
     direction_labels[direction] = get_direction_label(stops[direction].keys)
+    stops[direction] = clean_stop_names(stops[direction])
   end
 
   {'stops' => stops, 'direction_labels' => direction_labels}
@@ -51,8 +52,21 @@ end
 
 def clean_direction_label (direction)
   directions = ["North", "South", "East", "West"]
-  preferred = Hash[directions.map { |dir| [dir[0] + "B", dir + " Bound"] }]
+  preferred = Hash[directions.map { |dir| [dir[0] + "B", dir] }]
   preferred[direction].nil? ? direction : preferred[direction]
+end
+
+def clean_stop_names (stops)
+  result = {}
+  stops.each do |stop,link|
+    stop = stop.gsub '&', '&amp;'
+    stop = $1 if stop =~ /(.*)\s+\[/
+    stop = stop.split(/\s+/).map {|w| w.capitalize}.join(' ')
+    stop = stop.sub "D`onofrio", "D'Onofrio"
+    p stop
+    result[stop] = link
+  end
+  result
 end
 
 bus_info = {}
