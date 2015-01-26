@@ -4,14 +4,10 @@
 preferred_stops = []
 
 $.getJSON('preferred_stops.json').done((data) ->
-      console.log("read preferred_stops.json")
       $(document).ready(data.map (stop) -> preferred_stops.push(stop))
   ).done(
 
     $.getJSON 'bus_info.json', (bus_info) ->
-      console.log("read bus_info.json")
-      console.log("preferred stops: #{preferred_stops}")
-
       buses = (bus for bus of bus_info).sort()
       for bus in buses
         dir = (dir for dir of bus_info[bus].stops)
