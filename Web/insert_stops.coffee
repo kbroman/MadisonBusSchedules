@@ -8,7 +8,23 @@ $.getJSON('preferred_stops.json').done((data) ->
   ).done(
 
     $.getJSON 'bus_info.json', (bus_info) ->
-      buses = (bus for bus of bus_info).sort()
+
+      # two helper functions to sort the bus routes
+      replaceroute = (a) ->
+          routeorder = ["15", "80", "3", "14"]
+          tempval = ["-4","-3","-2","-1"]
+          index = routeorder.indexOf(a)
+          return tempval[index] if index >= 0
+          a
+
+      comparefunc = (a,b) ->
+          a = parseInt(replaceroute(a))
+          b = parseInt(replaceroute(b))
+          a - b
+
+      # sort the bus routes as 15, 80, 3, 14, ...
+      buses = (bus for bus of bus_info).sort(comparefunc)
+
       for bus in buses
         dir = (dir for dir of bus_info[bus].stops)
         for dir,label of bus_info[bus].direction_labels
