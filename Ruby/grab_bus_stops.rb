@@ -6,7 +6,7 @@ puts "Seeking info for routes #{routes.join(' ')}"
 require "open-uri"
 require 'Nokogiri'
 
-SERVER = "http://webwatch.cityofmadison.com/webwatch"
+SERVER = "http://webwatch.cityofmadison.com/tmwebwatch/LiveADAArrivalTimes"
 
 def grab_directions(route)
   routedoc = Nokogiri::HTML(open("#{SERVER}/MobileAda.aspx?r=#{route}"))
