@@ -11,8 +11,8 @@ $.getJSON('preferred_stops.json').done((data) ->
 
       # two helper functions to sort the bus routes
       replaceroute = (a) ->
-          routeorder = ["15", "80", "3", "14"]
-          tempval = ["-4","-3","-2","-1"]
+          routeorder = ["15", "80", "3", "14", "M"]
+          tempval = ["-4","-3","-2","-1", "0"]
           index = routeorder.indexOf(a)
           return tempval[index] if index >= 0
           a
